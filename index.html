@@ -1,87 +1,261 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Palette Generator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-            color: #333;
-        }
-
-        #colorPalette {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .colorBlock {
-            width: 100px;
-            height: 100px;
-            margin: 5px;
-            border: 1px solid #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon-BO3MvNjX.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32-DGABws7h.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16-DoVG7phi.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32-dark-theme-NVKXUxyj.png"
+        media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16-dark-theme-kju40T-n.png"
+        media="(prefers-color-scheme: dark)" />
+    <link rel="manifest" href="/assets/site-BYPsaEg_.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <title>Give me COLORS!</title>
+  <script type="module" crossorigin src="/assets/index-MDvM6R0K.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CQ9e9CgZ.css">
 </head>
 
 <body>
-    <h1>Color Palette Generator</h1>
+    <div class="palette" id="palette"></div>
 
-    <label for="numColors">Number of Colors:</label>
-    <input type="number" id="numColors" min="1" value="5">
-    <button onclick="generatePalette()">Generate Random Palette</button>
+    <div id="download" class="icon-button icon-download">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+            <path
+                d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z" />
+        </svg>
+    </div>
 
-    <div id="colorPalette"></div>
+    <div id="open-settings" class="icon-button icon-settings">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path
+                d="m256 0a256 256 0 0 0 0 512 256 256 0 0 0 0-512zm0.03125 98.561c8.9164 0 17.649 0.73802 26.135 2.1523 5.6573 0.92238 9.9616 5.3495 11.191 10.945l7.6856 35.111c9.7158 3.997 18.817 9.2854 27.057 15.619l34.252-10.883c5.4113-1.7218 11.436-0.18627 15.064 4.1797 4.9809 6.0263 9.5313 12.423 13.59 19.188l2.8906 4.9805c3.751 6.7642 7.0111 13.774 9.7168 21.092l-0.0625 0.06055c1.9678 5.3498 0.30744 11.314-3.9356 15.127l-26.625 24.229c0.67642 5.1039 1.0449 10.331 1.0449 15.619 0 5.2883-0.36851 10.515-1.0449 15.619l26.625 24.229c4.243 3.8125 5.9033 9.7771 3.9356 15.127-2.7057 7.3176-5.9638 14.328-9.7148 21.092l-2.8906 4.9805c-4.0585 6.7642-8.609 13.159-13.59 19.186-3.6281 4.4275-9.6551 5.9034-15.066 4.1816l-34.25-10.883c-8.24 6.3337-17.341 11.622-27.057 15.619l-7.6875 35.111c-1.2298 5.5958-5.5341 10.023-11.191 10.945-8.486 1.4143-17.218 2.1523-26.135 2.1523s-17.649-0.73801-26.135-2.1523c-5.6573-0.92238-9.9616-5.3495-11.191-10.945l-7.6856-35.111c-9.7158-3.997-18.817-9.2854-27.057-15.619l-34.189 10.945c-5.4113 1.7218-11.438 0.18433-15.066-4.1816-4.9809-6.0262-9.5314-12.421-13.59-19.186l-2.8906-4.9805c-3.751-6.7642-7.0092-13.776-9.7148-21.094-1.9678-5.3498-0.30744-11.314 3.9356-15.127l26.625-24.227c-0.67642-5.1654-1.0449-10.393-1.0449-15.682 0-5.2884 0.36851-10.515 1.0449-15.619l-26.625-24.229c-4.243-3.8125-5.9033-9.7771-3.9356-15.127 2.7057-7.3176 5.9638-14.328 9.7148-21.092l2.8906-4.9805c4.0585-6.7642 8.609-13.159 13.59-19.186 3.6281-4.4275 9.6551-5.9034 15.066-4.1816l34.25 10.885c8.24-6.3337 17.341-11.622 27.057-15.619l7.6875-35.113c1.2298-5.5958 5.5341-10.023 11.191-10.945 8.486-1.4758 17.218-2.2129 26.135-2.2129zm0 108.23a49.194 49.194 0 0 0 0 98.387 49.194 49.194 0 0 0 0-98.387z" />
+        </svg>
 
-    <script>
-        function generatePalette(mode) {
-            const numColors = document.getElementById('numColors').value;
-            const colorPalette = document.getElementById('colorPalette');
-            colorPalette.innerHTML = '';
+    </div>
+    <svg class="settings-indicator" id="settings-indicator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
+    </svg>
 
-            const baseColor = getRandomColor();
+    <div id="generate-button" class="button button-generate">Generate</div>
+    <div id="generate-icon" class="icon-button icon-generate">
+        <svg xmlns=" http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path
+                d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8c62.5-62.5 163.8-62.5 226.3 0L386.3 160H352c-17.7 0-32 14.3-32 32s14.3 32 32 32H463.5c0 0 0 0 0 0h.4c17.7 0 32-14.3 32-32V80c0-17.7-14.3-32-32-32s-32 14.3-32 32v35.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2c-4 4-6.7 8.8-8.1 14c-.3 1.2-.6 2.5-.8 3.8c-.3 1.7-.4 3.4-.4 5.1V432c0 17.7 14.3 32 32 32s32-14.3 32-32V396.9l17.6 17.5 0 0c87.5 87.4 229.3 87.4 316.7 0c24.4-24.4 42.1-53.1 52.9-83.7c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.5 62.5-163.8 62.5-226.3 0l-.1-.1L125.6 352H160c17.7 0 32-14.3 32-32s-14.3-32-32-32H48.4c-1.6 0-3.2 .1-4.8 .3s-3.1 .5-4.6 1z" />
+        </svg>
+    </div>
 
-            for (let i = 0; i < numColors; i++) {
-                const color = getRandomColor();
-                const colorBlock = document.createElement('div');
-                colorBlock.classList.add('colorBlock');
-                colorBlock.style.backgroundColor = color;
-                colorBlock.innerText = color.toUpperCase();
-                colorBlock.style.color = getTextColor(color);
-                colorPalette.appendChild(colorBlock);
-            }
-        }
+    <div id="settings" class="settings">
+        <div id="close-settings" class="icon-button icon-close">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path
+                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z" />
+            </svg>
+        </div>
 
-        function getRandomColor() {
-            const letters = '0123456789ABCDEF';
-            let color = '#';
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
+        <div class="settings-options">
+            <div id="reset-settings" class="settings-btn">
+                Reset to default
+            </div>
+            <div class="input-group">
+                <div class="settings-title">Palette size</div>
+                <div class="settings-btn-group settings-btn-group-inline">
+                    <label class="settings-btn">
+                        <input type="radio" name="size" value="4">
+                        4
+                    </label>
+                    <label class="settings-btn">
+                        <input type="radio" name="size" value="5">
+                        5
+                    </label>
+                    <label class="settings-btn">
+                        <input type="radio" name="size" value="6" checked>
+                        6
+                    </label>
+                    <label class="settings-btn">
+                        <input type="radio" name="size" value="7">
+                        7
+                    </label>
+                    <label class="settings-btn">
+                        <input type="radio" name="size" value="8">
+                        8
+                    </label>
 
-        function getTextColor(backgroundColor) {
-            const r = parseInt(backgroundColor.slice(1, 3), 16);
-            const g = parseInt(backgroundColor.slice(3, 5), 16);
-            const b = parseInt(backgroundColor.slice(5, 7), 16);
+                </div>
+                <div class="settings-btn-group settings-btn-group-inline">
+                    <label class="settings-btn">
+                        <input type="radio" name="size" value="9">
+                        9
+                    </label>
+                    <label class="settings-btn">
+                        <input type="radio" name="size" value="10">
+                        10
+                    </label>
+                    <label class="settings-btn">
+                        <input type="radio" name="size" value="11">
+                        11
+                    </label>
+                    <label class="settings-btn">
+                        <input type="radio" name="size" value="12">
+                        12
+                    </label>
+                </div>
+            </div>
 
-            const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+            <div class="input-group">
+                <div class="settings-title">Hue ranges</div>
+                <div class="settings-btn-group settings-btn-group-inline">
+                    <label class="settings-btn color-btn hue-1-12" title="0-15; 346-360">
+                        <input type="checkbox" name="hue" value="1" checked>
+                    </label>
+                    <label class="settings-btn color-btn hue-2-12" title="16-45">
+                        <input type="checkbox" name="hue" value="2" checked>
+                    </label>
+                    <label class="settings-btn color-btn hue-3-12" title="46-75">
+                        <input type="checkbox" name="hue" value="3" checked>
+                    </label>
+                    <label class="settings-btn color-btn hue-4-12" title="76-105">
+                        <input type="checkbox" name="hue" value="4" checked>
+                    </label>
+                    <label class="settings-btn color-btn hue-5-12" title="106-135">
+                        <input type="checkbox" name="hue" value="5" checked>
+                    </label>
+                    <label class="settings-btn color-btn hue-6-12" title="136-165">
+                        <input type="checkbox" name="hue" value="6" checked>
+                    </label>
+                </div>
+                <div class="settings-btn-group settings-btn-group-inline btn-group-reverse">
+                    <label class="settings-btn color-btn hue-7-12" title="166-195">
+                        <input type="checkbox" name="hue" value="7" checked>
+                    </label>
+                    <label class="settings-btn color-btn hue-8-12" title="196-225">
+                        <input type="checkbox" name="hue" value="8" checked>
+                    </label>
+                    <label class="settings-btn color-btn hue-9-12" title="226-255">
+                        <input type="checkbox" name="hue" value="9" checked>
+                    </label>
+                    <label class="settings-btn color-btn hue-10-12" title="256-285">
+                        <input type="checkbox" name="hue" value="10" checked>
+                    </label>
+                    <label class="settings-btn color-btn hue-11-12" title="286-315">
+                        <input type="checkbox" name="hue" value="11" checked>
+                    </label>
+                    <label class="settings-btn color-btn hue-12-12" title="316-345">
+                        <input type="checkbox" name="hue" value="12" checked>
+                    </label>
+                </div>
+            </div>
 
-            return brightness > 128 ? '#000' : '#fff';
-        }
+            <div class="input-group">
+                <div class="settings-title">Saturation ranges</div>
+                <div class="settings-btn-group settings-btn-group-inline">
 
-        generatePalette();
-    </script>
+                    <label class="settings-btn" title="0-10">
+                        <input type="checkbox" name="saturation" value="10" checked>
+                        10
+                    </label>
+                    <label class="settings-btn" title="11-20">
+                        <input type="checkbox" name="saturation" value="20" checked>
+                        20
+                    </label>
+                    <label class="settings-btn" title="21-30">
+                        <input type="checkbox" name="saturation" value="30" checked>
+                        30
+                    </label>
+                    <label class="settings-btn" title="31-40">
+                        <input type="checkbox" name="saturation" value="40" checked>
+                        40
+                    </label>
+                    <label class="settings-btn" title="41-50">
+                        <input type="checkbox" name="saturation" value="50" checked>
+                        50
+                    </label>
+                </div>
+                <div class="settings-btn-group settings-btn-group-inline">
+                    <label class="settings-btn" title="51-60">
+                        <input type="checkbox" name="saturation" value="60" checked>
+                        60
+                    </label>
+                    <label class="settings-btn" title="61-70">
+                        <input type="checkbox" name="saturation" value="70" checked>
+                        70
+                    </label>
+                    <label class="settings-btn" title="71-80">
+                        <input type="checkbox" name="saturation" value="80" checked>
+                        80
+                    </label>
+                    <label class="settings-btn" title="81-90">
+                        <input type="checkbox" name="saturation" value="90" checked>
+                        90
+                    </label>
+                    <label class="settings-btn" title="91-100">
+                        <input type="checkbox" name="saturation" value="100" checked>
+                        100
+                    </label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div class="settings-title">Lightness ranges</div>
+                <div class="settings-btn-group settings-btn-group-inline">
+
+                    <label class="settings-btn" title="0-10">
+                        <input type="checkbox" name="lightness" value="10" checked>
+                        10
+                    </label>
+                    <label class="settings-btn" title="11-20">
+                        <input type="checkbox" name="lightness" value="20" checked>
+                        20
+                    </label>
+                    <label class="settings-btn" title="21-30">
+                        <input type="checkbox" name="lightness" value="30" checked>
+                        30
+                    </label>
+                    <label class="settings-btn" title="31-40">
+                        <input type="checkbox" name="lightness" value="40" checked>
+                        40
+                    </label>
+                    <label class="settings-btn" title="41-50">
+                        <input type="checkbox" name="lightness" value="50" checked>
+                        50
+                    </label>
+                </div>
+                <div class="settings-btn-group settings-btn-group-inline">
+                    <label class="settings-btn" title="51-60">
+                        <input type="checkbox" name="lightness" value="60" checked>
+                        60
+                    </label>
+                    <label class="settings-btn" title="61-70">
+                        <input type="checkbox" name="lightness" value="70" checked>
+                        70
+                    </label>
+                    <label class="settings-btn" title="71-80">
+                        <input type="checkbox" name="lightness" value="80" checked>
+                        80
+                    </label>
+                    <label class="settings-btn" title="81-90">
+                        <input type="checkbox" name="lightness" value="90" checked>
+                        90
+                    </label>
+                    <label class="settings-btn" title="91-100">
+                        <input type="checkbox" name="lightness" value="100" checked>
+                        100
+                    </label>
+                </div>
+            </div>
+            <div class="author">
+                <span>Created by <a href="https://anastasiaelf.com/" target=”_blank”>AnastasiaElf</a></span>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
 </body>
 
 </html>
